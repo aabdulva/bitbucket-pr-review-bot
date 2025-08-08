@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  pr-review:
+    build: .
+    image: pr-review-bot:latest
+    container_name: pr-review-bot
+    restart: unless-stopped     # <--- critical: restarts container when Docker starts
+    env_file:
+      - .env
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./logs:/app/logs       # optional: persist logs
